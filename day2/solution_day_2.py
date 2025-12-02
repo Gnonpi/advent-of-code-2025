@@ -1,3 +1,4 @@
+import itertools
 import math
 from advent_interaction import get_problem_input
 
@@ -53,8 +54,31 @@ def solve_part_1(input_string: str) -> int:
     return sum_invalid
 
 
+def find_repeated_invalid_ids(start: int, end: int) -> list[int]:
+    # let's brute force
+    invalid_ids = []
+    for current in range(start, end + 1):
+        power_current = math.ceil(math.log10(current))
+        for i in range(1, math.ceil(power_current / 2) + 1):
+            if power_current % i != 0:
+                continue
+            split_current = [
+                "".join(tee_iter) for tee_iter in itertools.batched(str(current), i)
+            ]
+            # print(f"{current=} , {i=} : {split_current=}")
+            if len(set(split_current)) == 1:
+                invalid_ids.append(current)
+                break
+    return invalid_ids
+
+
 def solve_part_2(input_string: str) -> int:
-    raise NotImplementedError
+    records = parse_problem(input_string)
+    sum_invalid = 0
+    for range_num in records:
+        invalid_ids = find_repeated_invalid_ids(range_num[0], range_num[1])
+        sum_invalid += sum(invalid_ids)
+    return sum_invalid
 
 
 def main():

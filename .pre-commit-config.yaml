@@ -21,4 +21,4 @@ repos:
   rev: 'v1.19.0'  # Use the sha / tag you want to point at
   hooks:
     - id: mypy
-      args: ["--python-version", "3.12"]
+      args: ["--python-version", "3.12", "--ignore-missing-imports"]

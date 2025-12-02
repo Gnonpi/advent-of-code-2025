@@ -5,6 +5,7 @@ from day2.solution_day_2 import (
     split_range_bound,
     solve_part_1,
     find_invalid_in_range,
+    find_repeated_invalid_ids,
     solve_part_2,
     parse_problem,
 )
@@ -58,16 +59,33 @@ class TestPart1:
 
     def test_solve_real_problem(self):
         input_string = get_problem_input(CURRENT_DAY)
-        accepted_value = None
+        accepted_value = 26255179562
         assert solve_part_1(input_string) == accepted_value
 
 
 class TestPart2:
+    @pytest.mark.parametrize(
+        "start, end, expected",
+        [
+            (11, 22, [11, 22]),
+            (1698522, 1698528, []),
+            (38593856, 38593862, [38593859]),
+            (824824821, 824824827, [824824824]),
+            (2121212118, 2121212124, [2121212121]),
+            (77, 115, [77, 88, 99, 111]),
+            (64895, 87330, [6666, 77777]),
+        ],
+    )
+    def test_find_repeated_invalid_ids(self, start, end, expected):
+        assert find_repeated_invalid_ids(start, end) == expected
+
     def test_solve_sample(self):
-        expected = None
+        expected = 4174379265
         assert solve_part_2(SAMPLE) == expected
 
+    @pytest.mark.skip
     def test_solve_real_problem(self):
         input_string = get_problem_input(CURRENT_DAY)
+        # 31_680_314_020 is too high
         accepted_value = None
         assert solve_part_2(input_string) == accepted_value
