@@ -10,6 +10,9 @@ I've got `pyenv` in local plus a virtualenv, no need for production quality depe
 
 There's a pre-commit file, running via prek.
 
+When I want to run the code of one day,
+I just do `venv/bin/python dayX/solution_day.py`.
+
 ## Templating
 
 That's something I'd like to improve,
