@@ -3,3 +3,4 @@ python-dotenv==1.2.1
 pytest==9.0.1
 loguru==0.7.3
 pydantic==2.12.5
+ipython==9.8.0
