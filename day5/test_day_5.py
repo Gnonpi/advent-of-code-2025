@@ -6,6 +6,7 @@ from day5.solution_day_5 import (
     parse_problem,
     Ingredients,
     RangeIds,
+    combine_fresh_ranges,
 )
 
 SAMPLE = """3-5
@@ -45,11 +46,24 @@ class TestPart1:
 
 
 class TestPart2:
+    def test_combine_fresh_ranges(self):
+        entries = [
+            RangeIds(3, 5),
+            RangeIds(10, 14),
+            RangeIds(16, 20),
+            RangeIds(12, 18),
+        ]
+        expected = [
+            RangeIds(3, 5),
+            RangeIds(10, 20),
+        ]
+        assert combine_fresh_ranges(entries) == expected
+
     def test_solve_sample(self):
-        expected = None
+        expected = 14
         assert solve_part_2(SAMPLE) == expected
 
     def test_solve_real_problem(self):
         input_string = get_problem_input(CURRENT_DAY)
-        accepted_value = None
+        accepted_value = 348_115_621_205_535
         assert solve_part_2(input_string) == accepted_value
