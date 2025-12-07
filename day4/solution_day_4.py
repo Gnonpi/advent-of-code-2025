@@ -1,3 +1,4 @@
+import copy
 from loguru import logger
 
 CURRENT_DAY = 4
@@ -59,7 +60,7 @@ def count_adjacent(map_rolls: MapRolls, coord: Coord) -> int:
         try:
             adj_x, adj_y = adj_coord
             value = map_rolls[adj_x][adj_y]
-            print(f"({adj_x},{adj_y}) = {int(value)}")
+            # print(f"({adj_x},{adj_y}) = {int(value)}")
             cnt_adj += int(value)
         except IndexError:
             pass
@@ -94,8 +95,38 @@ def solve_part_1(input_string: str) -> int:
     return count_movable
 
 
+def move_movable_coords(map_rolls: MapRolls, movable_coords: list[Coord]) -> MapRolls:
+    new_map = copy.deepcopy(map_rolls)
+    for coord in movable_coords:
+        x, y = coord
+        new_map[x][y] = False
+    return new_map
+
+
 def solve_part_2(input_string: str) -> int:
-    raise NotImplementedError
+    records = parse_problem(input_string)
+    size_y = len(records)
+    size_x = len(records[0])
+    logger.debug(f"Grid: {size_x} x {size_y}")
+
+    i = 0
+    max_iter = 100
+    # cheating a bit
+    last_moved = 1
+    count_movable = 0
+    while i < max_iter and last_moved > 0:
+        i += 1
+
+        movable_coords = []
+        for roll_coord in find_roll_coords(records):
+            cnt_adj = count_adjacent(records, roll_coord)
+            if cnt_adj < 4:
+                count_movable += 1
+                movable_coords.append(roll_coord)
+
+        records = move_movable_coords(records, movable_coords)
+
+    return count_movable
 
 
 def main():

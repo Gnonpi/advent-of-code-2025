@@ -45,10 +45,10 @@ class TestPart1:
 
 class TestPart2:
     def test_solve_sample(self):
-        expected = None
+        expected = 43
         assert solve_part_2(SAMPLE) == expected
 
     def test_solve_real_problem(self):
         input_string = get_problem_input(CURRENT_DAY)
-        accepted_value = None
+        accepted_value = 9182
         assert solve_part_2(input_string) == accepted_value
