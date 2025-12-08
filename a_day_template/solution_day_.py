@@ -1,4 +1,5 @@
 from loguru import logger
+from advent_interaction import get_problem_input
 
 CURRENT_DAY = None
 
