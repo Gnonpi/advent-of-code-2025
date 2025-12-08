@@ -4,10 +4,12 @@ from day6.solution_day_6 import (
     solve_part_1,
     solve_part_2,
     parse_problem,
+    parse_part_2,
     Problem,
     ProblemColumn,
 )
 
+# Careful with spaces at end of line
 SAMPLE = """123 328  51 64
  45 64  387 23
   6 98  215 314
@@ -50,8 +52,32 @@ class TestPart1:
 
 
 class TestPart2:
+    def test_parse_part_2(self):
+        expected = Problem(
+            columns=[
+                ProblemColumn(
+                    numbers=[4, 431, 623],
+                    operation="+",
+                ),
+                ProblemColumn(
+                    numbers=[175, 581, 32],
+                    operation="*",
+                ),
+                ProblemColumn(
+                    numbers=[8, 248, 369],
+                    operation="+",
+                ),
+                ProblemColumn(
+                    numbers=[356, 24, 1],
+                    operation="*",
+                ),
+            ]
+        )
+        result = parse_part_2(SAMPLE)
+        assert len(result.columns) == len(expected.columns)
+
     def test_solve_sample(self):
-        expected = None
+        expected = 3263827
         assert solve_part_2(SAMPLE) == expected
 
     def test_solve_real_problem(self):
