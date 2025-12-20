@@ -1,5 +1,5 @@
 from xxx.advent_interaction import get_problem_input
-from xxx.solution_day_ import (
+from xxx.solution_day_xxx import (
     CURRENT_DAY,
     solve_part_1,
     solve_part_2,
