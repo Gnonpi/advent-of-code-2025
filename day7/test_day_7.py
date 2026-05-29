@@ -1,0 +1,54 @@
+from advent_interaction import get_problem_input
+from day7.solution_day_7 import (
+    CURRENT_DAY,
+    solve_part_1,
+    solve_part_2,
+    parse_problem,
+)
+
+SAMPLE = """
+.......S.......
+...............
+.......^.......
+...............
+......^.^......
+...............
+.....^.^.^.....
+...............
+....^.^...^....
+...............
+...^.^...^.^...
+...............
+..^...^.....^..
+...............
+.^.^.^.^.^...^.
+...............
+"""
+
+def test_parse_problem():
+    assert parse_problem(SAMPLE)[0:3] == [
+        [7],
+        [7],
+        [6, 8],
+    ]
+
+class TestPart1:
+    def test_solve_sample(self):
+        expected = 21
+        assert solve_part_1(SAMPLE) == expected
+
+    def test_solve_real_problem(self):
+        input_string = get_problem_input(CURRENT_DAY)
+        accepted_value = 1535
+        assert solve_part_1(input_string) == accepted_value
+
+
+class TestPart2:
+    def test_solve_sample(self):
+        expected = 40
+        assert solve_part_2(SAMPLE) == expected
+
+    def test_solve_real_problem(self):
+        input_string = get_problem_input(CURRENT_DAY)
+        accepted_value = None
+        assert solve_part_2(input_string) == accepted_value

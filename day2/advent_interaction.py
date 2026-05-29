@@ -1,0 +1,1 @@
+/home/denis/projects/advent-of-code-2025/advent_interaction.py
